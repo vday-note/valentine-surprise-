@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 Will You Be My Valentine?</title>
+<style>
+body {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  height: 100vh; background: linear-gradient(135deg, #ffe6f0, #ff99cc);
+  overflow: hidden; text-align: center;
+}
+.envelope {
+  width: 300px; height: 200px;
+  background: #ff4d94;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 70%, 0 100%);
+  position: relative; cursor: pointer; margin-bottom: 20px;
+  transition: transform 0.8s ease;
+}
+.envelope.open { transform: rotateX(180deg); }
+.message { display: none; font-size: 24px; color: #fff; margin-bottom: 20px; }
+.buttons { display: none; }
+button { padding: 10px 20px; margin: 5px; font-size: 18px; border: none; border-radius: 10px; cursor: pointer; }
+.yes { background-color: #ff1a75; color: white; }
+.no { background-color: #ccc; color: #333; }
+img { width: 150px; height: auto; margin-bottom: 10px; }
+
+/* Floating hearts */
+.heart { position: fixed; font-size: 20px; animation: floatUp 5s linear infinite; pointer-events: none; user-select: none; }
+@keyframes floatUp { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-800px) scale(1.5); opacity: 0; } }
+</style>
+</head>
+<body>
+
+<img id="teddy" src="teddy2.gif" alt="Excited Teddy">
+<div class="envelope" id="envelope" onclick="openEnvelope()"></div>
+<div class="message" id="message">Will you be my Valentine? 💌</div>
+<div class="buttons" id="buttons">
+  <button class="yes" onclick="yesClicked()">Yes ❤️</button>
+  <button class="no" onclick="noClicked()">No 😢</button>
+</div>
+
+<script>
+let envelope = document.getElementById('envelope');
+let message = document.getElementById('message');
+let buttons = document.getElementById('buttons');
+let teddy = document.getElementById('teddy');
+
+function openEnvelope(){
+  envelope.classList.add('open');
+  message.style.display='block';
+  buttons.style.display='block';
+  teddy.src='teddy2.gif';
+}
+function yesClicked(){ window.location.href='cute.html'; }
+function noClicked(){ alert("Oh no! 😢 I'll wait patiently..."); }
+
+// Floating hearts
+function createHearts(count){
+  for(let i=0;i<count;i++){
+    let h=document.createElement('div');
+    h.classList.add('heart');
+    h.style.left=Math.random()*window.innerWidth+'px';
+    h.style.fontSize=(15+Math.random()*15)+'px';
+    h.style.color=`hsl(${Math.random()*360},70%,60%)`;
+    h.textContent='❤️';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  }
+}
+setInterval(()=>createHearts(3),1000);
+</script>
+
+</body>
+</html>
