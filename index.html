@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💌 A Surprise</title>
+<style>
+body {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  height: 100vh;
+  background: #ffe6f0;
+  cursor: pointer; text-align: center;
+  overflow: hidden;
+}
+.envelope {
+  width: 300px; height: 200px;
+  background: #ff4d94;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 70%, 0 100%);
+  display: flex; justify-content: center; align-items: center;
+  font-size: 24px; color: #fff; margin-top: 20px;
+  transition: transform 0.5s ease;
+}
+.envelope:hover { transform: scale(1.05); }
+img { width: 150px; height: auto; }
+
+/* Floating hearts */
+.heart { position: fixed; font-size: 20px; animation: floatUp 5s linear infinite; pointer-events: none; user-select: none; }
+@keyframes floatUp { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-800px) scale(1.5); opacity: 0; } }
+</style>
+</head>
+<body onclick="openEnvelope()">
+
+<img src="teddy1.gif" alt="Curious Teddy">
+<div class="envelope">Click to Open 💌</div>
+
+<script>
+function openEnvelope() { window.location.href = 'valentine.html'; }
+
+// Floating hearts
+function createHearts(count){
+  for(let i=0;i<count;i++){
+    let h=document.createElement('div');
+    h.classList.add('heart');
+    h.style.left=Math.random()*window.innerWidth+'px';
+    h.style.fontSize=(15+Math.random()*15)+'px';
+    h.style.color=`hsl(${Math.random()*360},70%,60%)`;
+    h.textContent='❤️';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  }
+}
+setInterval(()=>createHearts(3),1000);
+</script>
+
+</body>
+</html>
