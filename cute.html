@@ -22,11 +22,11 @@ img { width: 180px; height: auto; margin-bottom: 20px; animation: bounce 1s infi
 @keyframes floatUp { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-800px) scale(1.5); opacity: 0; } }
 </style>
 </head>
-<body>
+<body onload="playMusic()">
 
 <img src="teddy3.gif" alt="Dancing Teddy">🫂
 <div class="message" id="message">Yay! 💖 I'm your Valentine too!forever gonna be your very own octopus🐙 , baby🫂 </div>
-<audio id="music" src="valentine.mp3" autoplay></audio>
+<audio id="music" src="valentine.mp3" preload="auto"></audio>
 
 <script>
 function createConfetti(){
